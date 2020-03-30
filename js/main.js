@@ -1,12 +1,3 @@
-/*
-GAME FUNCTION:
-- Player must guess a number between a min and max
-- Player gets a certain amount of guesses
-- Notify player of guesses remaining
-- Notify the player of the correct answer if loose
-- Let player choose to play again
-*/
-
 // Game values 
 let min = 1, 
     max = 10,
@@ -29,6 +20,7 @@ maxNum.textContent = max;
 const setMessage = (msg, color) => {
   message.textContent = msg;
   message.style.color = color;
+  message.style.border = `1px solid ${color}`;
 }
 
 // Game Over
@@ -42,12 +34,14 @@ const gameOver = (won, msg) => {
   // Change border and text color
   guessInput.style.borderColor = color;
   message.style.color = color;
+  message.style.border = `1px solid ${color}`;
+  
   // Set message
   setMessage(msg);
 
   // Play Again?
   guessBtn.value = 'Play Again';
-  guessBtn.className += 'play-again';
+  guessBtn.classList.add('play-again');
 }
 
 // Get Random Num
@@ -78,7 +72,6 @@ guessBtn.addEventListener('click', () => {
 
       } else {
         // Game continues - answer wrong
-
         // Tell user its the wrong number
         guessInput.style.borderColor = 'red';
         setMessage(`${guess} is not correct, ${guessesLeft} guesses left`, 'red');
